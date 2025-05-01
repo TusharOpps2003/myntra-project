@@ -1,3 +1,5 @@
+const convenieenceFees = 99;
+
 let bagItemObjects;
 onLoad();
 
@@ -11,11 +13,13 @@ function displayBagSummary() {
   let totalItem = bagItemObjects.length;
   let totalMrp = 0;
   let totalDiscount = 0;
-  let totalPayment = 0;
   bagItemObjects.forEach((bagItem) => {
     totalMrp += bagItem.original_price;
     totalDiscount += bagItem.original_price - bagItem.current_price;
   });
+
+  let totalPayment = totalMrp - totalDiscount + convenieenceFees;
+
   bagSummaryElement.innerHTML = `<div class="bag-details-container">
             <div class="price-header">PRICE DETAILS (${totalItem} Items)</div>
             <div class="price-item">
